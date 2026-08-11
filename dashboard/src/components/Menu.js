@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-
 import { Link } from "react-router-dom";
 
-const Menu = () => {
+const Menu = ({ user, onLogout }) => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
@@ -10,7 +9,7 @@ const Menu = () => {
     setSelectedMenu(index);
   };
 
-  const handleProfileClick = (index) => {
+  const handleProfileClick = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
 
@@ -19,7 +18,7 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
-      <img src="logo.png" style={{ width: "50px" }} />
+      <img src="logo.png" style={{ width: "50px" }} alt="logo" />
       <div className="menus">
         <ul>
           <li>
@@ -91,9 +90,20 @@ const Menu = () => {
         </ul>
         <hr />
         <div className="profile" onClick={handleProfileClick}>
-          <div className="avatar">ZU</div>
-          <p className="username">USERID</p>
+          <div className="avatar">
+            {user ? user.username.substring(0, 2).toUpperCase() : "ZU"}
+          </div>
+          <p className="username">{user ? user.username : "USERID"}</p>
         </div>
+        
+        {isProfileDropdownOpen && (
+          <div 
+            style={{ position: 'absolute', right: '20px', top: '70px', background: '#fff', border: '1px solid #ddd', padding: '10px 20px', borderRadius: '4px', cursor: 'pointer', zIndex: 100, boxShadow: '0px 2px 4px rgba(0,0,0,0.1)' }} 
+            onClick={onLogout}
+          >
+            Logout
+          </div>
+        )}
       </div>
     </div>
   );
