@@ -50,6 +50,11 @@ passport.deserializeUser(UserModel.deserializeUser());
 
 // --- AUTHENTICATION ROUTES ---
 
+// --- ROOT HEALTH CHECK ROUTE ---
+app.get("/", (req, res) => {
+  res.json({ status: "Server is running successfully!" });
+});
+
 app.post("/signup", async (req, res) => {
   try {
     const { username, email, password } = req.body;
