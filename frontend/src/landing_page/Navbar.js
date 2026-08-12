@@ -83,6 +83,21 @@ function Navbar() {
                             </li>
                         ))}
                         
+                        {/* Direct link to your dashboard application */}
+                        <li className="nav-item me-4">
+                            <a 
+                                className={`nav-link fw-medium ${
+                                    isScrolled ? 'text-light' : 'text-dark'
+                                }`} 
+                                href="http://localhost:3001" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                style={{ transition: 'color 0.4s ease' }}
+                            >
+                                Dashboard
+                            </a>
+                        </li>
+                        
                         <li className="nav-item mt-3 mt-lg-0">
                             {/* Changed a tag to Link and href to "to" */}
                             <Link 
